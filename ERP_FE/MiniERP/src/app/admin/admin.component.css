@@ -1,0 +1,187 @@
+.admin-container {
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
+  height: 100vh;
+}
+
+button {
+  padding: 10px;
+  margin: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  margin-top: 20px;
+}
+
+form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: left;
+  animation: fadeIn 0.5s ease-in-out;
+  z-index: 2;
+  position: relative;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+button[type='submit'] {
+  background-color: #28a745;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+  background-color: #218838;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #2C2C2C, #000000);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-button {
+  background-color: white;
+  color: #4caf50;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.sidebar-button:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+.admin-container {
+  margin-left: 220px;
+  text-align: center;
+  padding: 20px;
+}
+
+.form-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.navbar {
+  background: linear-gradient(to right, #2C3E50, #4CA1AF);
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.navbar h1 {
+  color: white;
+  font-size: 28px;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 2px 2px 5px black;
+}
+
+
+.user-table {
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table-header {
+  background-color: #007BFF;
+  color: white;
+  text-align: left;
+  padding: 12px;
+  font-size: 18px;
+}
+
+.table-row td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+.table-row:hover {
+  background-color: #f4f4f4;
+  transition: 0.3s;
+}
+
+.table-row:nth-child(even) {
+  background-color: #f2f2f2;
+}

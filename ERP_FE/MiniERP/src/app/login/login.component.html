@@ -1,0 +1,33 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>Login</h2>
+    <form [formGroup]="userloginFormGroup" (ngSubmit)="UserLogin()">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" placeholder="Enter Username" name="username"  formControlName="username">
+        <span *ngIf="userloginFormGroup.controls.username.invalid && userloginFormGroup.controls.username.touched">
+          invalid username
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder="Enter Password" name="password"  formControlName="password">
+        <span *ngIf="userloginFormGroup.controls.password.invalid && userloginFormGroup.controls.password.touched">
+          invalid password
+        </span>
+      </div>
+
+      <button type="submit" class="btn-login" [disabled]="userloginFormGroup.controls.username.invalid || userloginFormGroup.controls.password.invalid" >Login</button>
+    </form>
+
+
+    <!-- <div *ngIf="loginError==false">
+    <p>Something Went Wrong !!!!</p>
+    </div> -->
+
+    <div *ngIf="loginError==true">
+      <p style="color: green;">Sales Person Added Successfully !!!</p>
+      </div>
+  </div>
+</div>

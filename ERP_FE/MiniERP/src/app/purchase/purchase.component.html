@@ -1,0 +1,115 @@
+
+<div class="navbar">
+    <h1>Welcome to Purchase Panel</h1>
+  </div>
+  
+
+
+
+<div class="purchase-container">
+    <div class="sidebar">
+      <button class="add-supplier-btn" (click)="showForm()">Add Supplier</button>
+      <button class="see-all-suppliers-btn" (click)="seeAllSuppliers()">See All Suppliers</button>
+      <button class="update-supplier-btn" (click)="showUpdateForm()">Update Supplier</button>
+      <button class="delete-supplier-btn" (click)="showDeleteForm()">Delete Supplier</button> <!-- New Delete Supplier Button -->
+    </div>
+  
+    <div class="main-content">
+      <div *ngIf="formVisible" class="form-popup">
+        <h3>Add Supplier</h3>
+        <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="supplierName">Supplier Name</label>
+            <input type="text" id="supplierName" name="supplierName" formControlName="name" required />
+          </div>
+          <div class="form-group">
+            <label for="supplierContact">Supplier Contact</label>
+            <input type="text" id="supplierContact" name="supplierContact" formControlName="contacts" required />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" class="cancel-btn" (click)="cancelForm()">Cancel</button>
+          </div>
+          <span *ngIf="supplierAdded==true"> 
+            <p style="color: green;">Supplier Added Successfully !!!!</p>
+
+          </span>
+          <span *ngIf="supplierAddedError==true"> 
+            <p style="color: red;">Something Went Wrong !!!!</p>
+
+          </span>
+        </form>
+      </div>
+  
+      <div *ngIf="updateFormVisible" class="form-popup">
+        <h3>Update Supplier</h3>
+        <form [formGroup]="supplierUpdateForm" (ngSubmit)="onUpdateSubmit()">
+          <div class="form-group">
+            <label for="updateSupplierName">Supplier Id</label>
+            <input type="text" id="id"  name="id" formControlName="id" required />
+          </div>
+          <div class="form-group">
+            <label for="updateSupplierName">Supplier Name</label>
+            <input type="text" id="updateSupplierName"  name="updateSupplierName" formControlName="name" required />
+          </div>
+          <div class="form-group">
+            <label for="updateSupplierContact">Supplier Contact</label>
+            <input type="text" id="updateSupplierContact" formControlName="contacts"  name="updateSupplierContact" required />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="submit-btn">Update</button>
+            <button type="button" class="cancel-btn" (click)="cancelUpdateForm()">Cancel</button>
+          </div>
+          <span *ngIf="UpdateSupplier==true">
+            <p style="color: green;">Supplier Updated Successfully !!!!</p>
+
+          </span>
+          <span *ngIf="UpdateSupplierError==true">
+            <p style="color: red;">Something Went Wrong !!!!</p>
+
+          </span>
+        </form>
+      </div>
+  
+      <div *ngIf="deleteFormVisible" class="form-popup"> <!-- Delete Form Visibility -->
+        <h3>Delete Supplier</h3>
+        <form [formGroup]="DeleteSupplierBYID" (ngSubmit)="onDelete()">
+          <div class="form-group">
+            <label for="supplierId">Supplier ID</label>
+            <input type="text" id="supplierId" formControlName="userid" name="supplierId" required />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="submit-btn">Delete</button>
+            <button type="button" class="cancel-btn" (click)="cancelDeleteForm()">Cancel</button>
+          </div>
+          <span *ngIf="supplierDeleted==true">
+            <p style="color: green;">Supplier Deleted Successfully !!!!</p>
+          </span>
+          <span *ngIf="supplierDeletedError==true">
+            <p style="color: red;">Something Went Wrong !!!!</p>
+          </span>
+        </form>
+      </div>
+      <div *ngIf="ShowAllSupplier == true" style="position: relative;">
+        <table *ngIf="suppliers.length > 0" class="user-table">
+          <tr>
+           
+            <th class="table-header">Name</th>
+            <th class="table-header">Contact</th>
+          </tr>
+          <tr *ngFor="let user of suppliers" class="table-row">
+            <td>{{user.name}}</td>
+            <td>{{user.contact}}</td>
+         
+         
+          </tr>
+        </table>
+      
+        <span *ngIf="suppliers.length == 0">
+          <P>No Records Found!!!!</P></span>
+      </div>
+    </div>
+    
+  </div>
+  
+

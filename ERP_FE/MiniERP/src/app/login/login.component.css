@@ -1,0 +1,123 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #2980b9, #6dd5fa);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.login-box {
+  width: 450px;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  animation: zoomIn 1s ease-out;
+  transition: transform 0.4s ease-in-out;
+}
+
+.login-box:hover {
+  transform: translateY(-10px);
+}
+
+.login-box::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(41, 128, 185, 0.3);
+  border-radius: 50%;
+  z-index: -1;
+  filter: blur(100px);
+  opacity: 0.6;
+}
+
+.login-box h2 {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #2980b9, #6dd5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #444;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  background: rgba(230, 230, 230, 0.7);
+  transition: all 0.4s;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+  border: 1px solid #2980b9;
+  box-shadow: 0 0 12px rgba(41, 128, 185, 0.7);
+  background: #ffffff;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #2980b9, #6dd5fa);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 20px rgba(41, 128, 185, 0.4);
+}
+
+.btn-login:hover {
+  background: linear-gradient(90deg, #1a5276, #2980b9);
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,255 @@
+<nav class="navbar">
+    <h1>Hii Admin, You Have All Access </h1>
+  </nav>
+  
+
+
+<div class="sidebar">
+    <button class="sidebar-button" (click)="ShowAllUser()">See All Users</button>
+    <button (click)="showUserByIdForm()" class="sidebar-button">See User by ID</button>
+    <button (click)="showDeleteUserForm()" class="sidebar-button">Delete User</button>
+    <button (click)="showAddProductForm()" class="sidebar-button">Add Product</button>
+    <button (click)="showAllProducts()" class="sidebar-button">See All Products</button>
+    <button (click)="showProductByIdForm()" class="sidebar-button">See Product by ID</button>
+    <button (click)="showUpdateProductForm()" class="sidebar-button">Update Product</button>
+    <button (click)="showDeleteProductForm()" class="sidebar-button">Delete Product</button>
+  </div>
+  
+  
+  <div class="admin-container">
+    <h2>Welcome to Admin Page</h2>
+  
+    <div *ngIf="!showSalesFormFlag && !showPurchaseFormFlag && !showUserByIdFlag && !showDeleteUserFlag && !showAddProductFlag && !showProductByIdFlag && !showAllProductsFlag && !showallUser">
+      <button (click)="showSalesForm()">Add Sales User</button>
+      <!-- <button (click)="showPurchaseForm()">Add Purchase User</button> -->
+    </div>
+  
+
+    
+
+    <div *ngIf="showallUser==true">
+
+      <table *ngIf="users.length > 0" class="user-table">
+        <tr>
+          <th class="table-header">Employee ID</th>
+          <th class="table-header">Employee Name</th>
+          <th class="table-header">Username</th>
+          <th class="table-header">Role</th>
+        </tr>
+        <tr *ngFor="let user of users" class="table-row">
+          <td>{{user.employeeId}}</td>
+          <td>{{user.employeeName}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.role}}</td>
+        </tr>
+      </table>
+      
+
+      <div *ngIf="users.length==0">
+        <h1>No Records Found!!</h1>
+      </div>
+
+    </div>
+
+
+    <!-- Sales Form -->
+    <div *ngIf="showSalesFormFlag" class="form-container">
+      <form  [formGroup]="SalesFormGroup" (ngSubmit)="SalesFormSubmit()">
+        <h3>Add Sales User</h3>
+        <label>Employee ID:</label>
+        <input type="text" name="EmployeeID" formControlName="EmployeeID">
+        <span *ngIf="SalesFormGroup.controls.EmployeeID.invalid && SalesFormGroup.controls.EmployeeID.touched">Invalid Emp id</span>
+  
+        <label>Employee Name:</label>
+        <input type="text" name="EmployeeName" formControlName="EmployeeName">
+        <span *ngIf="SalesFormGroup.controls.EmployeeName.invalid && SalesFormGroup.controls.EmployeeName.touched">Invalid EmployeeName</span>
+        <label>Username:</label>
+        <input type="text" name="Username" formControlName="Username">
+        <span *ngIf="SalesFormGroup.controls.Username.invalid && SalesFormGroup.controls.Username.touched">Invalid Usernamed</span>
+        <label>Password:</label>
+        <input type="password" name="Password" formControlName="Password">
+        <span *ngIf="SalesFormGroup.controls.Password.invalid && SalesFormGroup.controls.Password.touched" class="text-danger">Invalid Password</span>
+        <label>Role:</label>
+        <select name="Role" name="Role" formControlName="Role">
+          <option value="Sales">Sales</option>
+          <option value="Purchase">Purchase</option>
+        </select>
+        <!-- <input type="text" value="Sales" readonly name="Role" formControlName="role"> -->
+  
+        <button type="submit">Submit</button>
+      </form>
+
+      <div *ngIf="isAdded==true">
+       <p style="color: green;">User Added Successfully!!!</p>
+      </div>
+      <div *ngIf="salesFromError==true">
+        <p style="color: green;">Something Went Worng !!!!</p>
+       </div>
+ 
+    </div>
+  
+    <!-- Purchase Form -->
+    <div *ngIf="showPurchaseFormFlag" class="form-container">
+      <form>
+        <h3>Add Purchase User</h3>
+        <label>Employee ID:</label>
+        <input type="text">
+  
+        <label>Employee Name:</label>
+        <input type="text">
+  
+        <label>Username:</label>
+        <input type="text">
+  
+        <label>Password:</label>
+        <input type="password">
+  
+        <label>Role:</label>
+        <input type="text" value="Purchase" readonly>
+  
+        <button type="submit" style="background-color: red; color: white;">Submit</button>
+      </form>
+    </div>
+  
+    <!-- User by ID Form -->
+    <div *ngIf="showUserByIdFlag" class="form-popup">
+      <form [formGroup]="SeeUserBYID" (ngSubmit)="SeeUserByID()">
+        <h3>See User by ID</h3>
+        <label>Enter User ID:</label>
+        <input type="text" name="userid" formControlName="userid">
+  
+        <button type="submit" style="background-color: black; color: white;">Submit</button>
+
+        <span *ngIf="userDoesNotExist == true">
+          <p>No User Exist!!!</p>
+        </span>
+      </form>
+
+      <div *ngIf="UserExist==true">
+        <table  class="user-table">
+          <tr>
+            <th class="table-header">Employee ID</th>
+            <th class="table-header">Employee Name</th>
+            <th class="table-header">Username</th>
+            <th class="table-header">Role</th>
+          </tr>
+          <tr  class="table-row">
+            <td>{{user.employeeId}}</td>
+            <td>{{user.employeeName}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.role}}</td>
+          </tr>
+        </table>
+      </div>
+      
+    </div>
+  
+    <!-- Delete User Form -->
+    <div *ngIf="showDeleteUserFlag" class="form-popup">
+      <form [formGroup]="DeleteUserBYID" (ngSubmit)="DeleteUserByID()">
+        <h3>Delete User</h3>
+        <label>Enter User ID:</label>
+        <input type="text" username="userid" formControlName="userid">
+  
+        <button type="submit" style="background-color: crimson; color: white;">Delete</button>
+        <span *ngIf="DeleteuserDoesNotExist == true">
+          <p>No User Exist!!!</p>
+        </span>
+        <span *ngIf="DeleteUserExist == true">
+          <p>User Deleted!!!</p>
+        </span>
+      </form>
+    </div>
+  
+    <!-- Add Product Form -->
+    <div *ngIf="showAddProductFlag" class="form-popup">
+      <form [formGroup]="ProductFormGroup" (ngSubmit)="AddProductSubmit()">
+        <h3>Add Product</h3>
+        <label>ID:</label>
+        <input type="text" name="id" formControlName="id">
+  
+        <label>Name:</label>
+        <input type="text" name="name" formControlName="name">
+  
+        <label>Price:</label>
+        <input type="text" name="price" formControlName="price">
+  
+        <label>Stock:</label>
+        <input type="text" name="stock" formControlName="stock">
+  
+        <button type="submit" style="background-color: green; color: white;">Submit</button>
+        <span *ngIf="isProductAdded">
+          <p style="color: green;">Prodcut Added Successfully !!!</p>
+        </span>
+        <span *ngIf="isPrductAddedError">
+          <p style="color: red;">Something Went Wrong !!!</p>
+        </span>
+      </form>
+    </div>
+  
+    <!-- See All Products -->
+    <div *ngIf="showAllProductsFlag">
+      <h3>See All Products</h3>
+      <table *ngIf="products.length > 0" class="user-table">
+        <tr>
+       
+          <th class="table-header"> Name</th>
+          <th class="table-header">Price</th>
+          <th class="table-header">Stock</th>
+        </tr>
+        <tr *ngFor="let product of products" class="table-row">
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.stock}}</td>
+     
+        </tr>
+      </table>
+
+      <span *ngIf="products.length == 0">
+        <P>No Records Found!!!!</P>
+      </span>
+    </div>
+  
+    <!-- Product by ID Form -->
+    <div *ngIf="showProductByIdFlag" class="form-popup">
+      <form >
+        <h3>See Product by ID</h3>
+        <label>Enter Product ID:</label>
+        <input type="text">
+  
+        <button type="submit" style="background-color: blue; color: white;">Submit</button>
+      </form>
+    </div>
+    <div *ngIf="showUpdateProductFlag" class="form-popup">
+        <form>
+          <h3>Update Product</h3>
+          <label>ID:</label>
+          <input type="text">
+    
+          <label>Name:</label>
+          <input type="text">
+    
+          <label>Price:</label>
+          <input type="text">
+    
+          <label>Stock:</label>
+          <input type="text">
+    
+          <button type="submit" style="background-color: orange; color: white;">Update</button>
+        </form>
+      </div>
+    
+      <!-- Delete Product Form -->
+      <div *ngIf="showDeleteProductFlag" class="form-popup">
+        <form>
+          <h3>Delete Product</h3>
+          <label>Enter Product ID:</label>
+          <input type="text">
+    
+          <button type="submit" style="background-color: red; color: white;">Delete</button>
+        </form>
+      </div>
+
+  </div>
+  
+
